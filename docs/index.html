@@ -22,17 +22,41 @@
         </div>
         <script>
             // TODO0 ここに設定情報を貼り付ける  
-            
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAbyQLL_2vg_FtnHoWKrm5mjzWTm6ViQoM",
+    authDomain: "hide-18921.firebaseapp.com",
+    databaseURL: "https://hide-18921.firebaseio.com",
+    projectId: "hide-18921",
+    storageBucket: "hide-18921.appspot.com",
+    messagingSenderId: "483132640318",
+    appId: "1:483132640318:web:13d31ae79369e6a90a156f"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>            
             // データベースの参照を準備
             var ledRef = firebase.firestore().collection('led')
         
             // TODO1 送信ボタンが押された時の処理
-            
-            $('#led-on').click(function() {
+                        $('#led-on').click(function() {
 		    // {led: "ON"}を送信
+                ledRef.add({
+                led:"ON"
+		        });
             });
             $('#led-off').click(function() {
 		    // {led: "OFF"}を送信
+                ledRef.add({
+                led:"OFF"
+		        });
             });
 
         </script>

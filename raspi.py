@@ -34,17 +34,21 @@ def on_snapshot(doc_snapshot, changes, read_time):
         if led == "ON":
             print "ON"
             # ONにする処理
-        elif led == "OFF":
-            print "OFF"
+		GPIO.output(14, GPIO.HIGH)
+ 
+
+       		 elif led == "OFF":
+           	 print "OFF"
             # OFFにする処理
-
-
+	GPIO.output(14, GPIO.LOW)
 on_ref = db.collection('led').where(u'led', u'==', u'ON')
 off_ref = db.collection('led').where(u'led', u'==', u'OFF')
 
 # 監視を開始する
 doc_watch = on_ref.on_snapshot(on_snapshot)
 doc_watch = off_ref.on_snapshot(on_snapshot)
+
+GPIO.cleanup()
 
 # 温度湿度気圧センサから値を取得してFirestoreに送信する部分
 # 「'''」で囲まれた部分はコメントアウトされているので，参考にすること．
